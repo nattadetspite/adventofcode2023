@@ -1,6 +1,6 @@
 const readData = require("../utils");
 
-const dataArray = readData("input.txt");
+const dataArray = readData("input.txt"); //exampleInput.txt, input.txt
 
 /**
  * condition
@@ -12,7 +12,7 @@ const dataArray = readData("input.txt");
  * sub of id of possible games
  */
 
-let possibleSum = 0;
+let possibleSum = 0, powSum = 0;
 dataArray.forEach((data, index) => {
   const id = index + 1; // get id
   const values = data.split(":")[1];
@@ -21,6 +21,7 @@ dataArray.forEach((data, index) => {
   let isPossible = true;
 
   console.log("games: ", id);
+  let maxCube = { red: 0, green: 0, blue: 0 };
   cubesEachBox.map((cubes) => {
     const _cubes = cubes.trim();
     const _cubesArr = _cubes.split(",");
@@ -33,21 +34,28 @@ dataArray.forEach((data, index) => {
       // check possible
       if (key === "red" && val > 12) {
         isPossible = false;
-        return;
       }
       if (key === "green" && val > 13) {
         isPossible = false;
-        return;
       }
       if (key === "blue" && val > 14) {
         isPossible = false;
-        return;
       }
+      // part 2
+      maxCube[key] = parseInt(val) > maxCube[key] ? parseInt(val) : parseInt(maxCube[key]);
     });
-
   });
-
+  
   if (isPossible) possibleSum += id;
+
+  // part 2
+  console.log(id, maxCube);
+  let pow = 1;
+  Object.entries(maxCube).map(([key, val]) => {
+    console.log('val maxcube: ', val)
+    pow = pow * val;
+  })
+  powSum += pow
 });
 
-console.log("ans: ", possibleSum);
+console.log("ans: ", possibleSum, powSum);
