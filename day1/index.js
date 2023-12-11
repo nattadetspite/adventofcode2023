@@ -1,6 +1,6 @@
 const readData = require("../utils.js");
 
-const dataArray = readData("part2ExampleInput.txt");
+const dataArray = readData("input.txt");
 // const dataArray = ["abcone2threexyz\r"];
 
 // regex check letter num
