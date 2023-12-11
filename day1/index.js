@@ -1,8 +1,6 @@
-const fs = require("fs");
+const readData = require('../utils.js')
 
-const data = fs.readFileSync("./input.txt", { encoding: "utf8", flag: "r" }); // exampleInput.txt and input.txt
-const dataArray = data.split("\n");
-console.log(dataArray);
+const dataArray = readData('exampleInput.txt')
 
 function isCharNumber(c) {
   return c >= "0" && c <= "9";
